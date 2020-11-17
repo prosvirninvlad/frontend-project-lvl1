@@ -1,0 +1,12 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "type": "module",
+  "repository": "https://github.com/prosvirninvlad/frontend-project-lvl1.git",
+  "author": "Vladislav Prosvirnin <prosvirnin.vlad@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "bin": {
+    "brain-games": "bin/brain-games.js"
+  }
+}
