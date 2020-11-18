@@ -8,9 +8,9 @@ const MAX_RANDOM_VALUE = 100;
 playBrainGame({
   cli,
   instruction: 'Answer "yes" if the number is even, otherwise answer "no".',
-  round: () => {
+  round: async () => {
     const number = random(MAX_RANDOM_VALUE);
-    const answer = read(`Question: ${number}\nYour answer:`).toLowerCase();
+    const answer = (await read(`Question: ${number}\nYour answer:`)).toLowerCase();
     const key = isEven(number) ? 'yes' : 'no';
     return { answer, key, passed: answer === key };
   },

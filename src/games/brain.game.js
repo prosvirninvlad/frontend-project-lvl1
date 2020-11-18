@@ -6,9 +6,9 @@ export default function playBrainGame({ instruction, cli, round }) {
   let rounds = 0;
 
   playGame({
-    onStarted: () => {
+    onStarted: async () => {
       cli.print('Welcome to the Brain Games!');
-      const name = cli.read('May I have your name?');
+      const name = await cli.read('May I have your name?');
       cli.print(`Hello, ${name}`);
       cli.print(instruction);
       return name;
@@ -23,8 +23,8 @@ export default function playBrainGame({ instruction, cli, round }) {
     },
     onRoundPassed: () => cli.print('Correct!'),
     onRoundFailed: (name, { answer, key }) => {
-      cli.print(`'${answer}' is wrong answer ;(. Correct answer was '${key}'`);
-      cli.print(`Let's try again, ${name}`);
+      cli.print(`'${answer}' is wrong answer ;(. Correct answer was '${key}'.`);
+      cli.print(`Let's try again, ${name}!`);
     },
   });
 }
