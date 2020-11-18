@@ -1,4 +1,8 @@
 #! /usr/bin/env node
-import greetUser from '../src/cli.js';
+import { print, read } from '../src/cli.js';
 
-greetUser();
+(async () => {
+  print('Welcome to the Brain Games!');
+  const name = await read('May I have your name?');
+  print(`Hello, ${name}!`);
+})();
