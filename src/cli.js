@@ -1,14 +1,6 @@
 import { question } from 'readline-sync';
 
-function readUsernameFromStdin() {
-  return question('May I have your name? ');
-}
+export const read = (prompt) => question(prompt && `${prompt} `);
+export const print = (...messages) => console.log(...messages);
 
-function print(...messages) {
-  console.log(...messages);
-}
-
-export default function greetUser() {
-  print('Welcome to the Brain Games!');
-  print(`Hello, ${readUsernameFromStdin()}!`);
-}
+export default { print, read };
