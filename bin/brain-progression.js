@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import cli, { readInt } from '../src/cli.js';
+import cli from '../src/cli.js';
 import { random } from '../src/common.js';
 import playBrainGame from '../src/games/brain.game.js';
 
@@ -23,9 +23,8 @@ function generateRandomProgression() {
 playBrainGame({
   cli,
   instruction: 'What number is missing in the progression?',
-  round: async () => {
-    const [key, progression] = generateRandomProgression();
-    const answer = await readInt(`Question: ${progression}\nYour answer:`);
-    return { answer, key: 0, passed: answer === key };
+  round: () => {
+    const [key, question] = generateRandomProgression();
+    return { question, key };
   },
 });

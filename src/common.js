@@ -16,3 +16,4 @@ export const isPrime = (number) => {
   }
   return true;
 };
+export const isNumber = (candidate) => typeof candidate === 'number';
