@@ -1,19 +1,20 @@
-export default async function playGame(hooks) {
-  const data = await hooks.onStarted();
-  const change = () => hooks.onRoundChange(data);
+const MAX_ROUNDS = 3;
 
-  let round = change();
-  while (round) {
-    const result = await round();
-    if (!result.passed) {
-      hooks.onRoundFailed(data, result);
+export default async function playGame(hooks) {
+  let rounds = 0;
+  const data = await hooks.onStarted();
+  const play = () => hooks.onRoundChange(data);
+
+  for (; rounds < MAX_ROUNDS; rounds += 1) {
+    const round = await play();
+    if (!round.passed) {
+      hooks.onRoundFailed(data, round);
       break;
     }
-    hooks.onRoundPassed(data, result);
-    round = change();
+    hooks.onRoundPassed(data, round);
   }
 
-  if (!round) {
+  if (rounds === MAX_ROUNDS) {
     hooks.onSucceed(data);
   }
 }

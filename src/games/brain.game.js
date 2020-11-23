@@ -1,10 +1,6 @@
 import playGame from './index.js';
 
-const DEFAULT_ATTEMPTS_AMOUNT = 3;
-
-export default function playBrainGame({ instruction, cli, round }) {
-  let rounds = 0;
-
+export default function playBrainGame({ instruction, cli, round: onRoundChange }) {
   playGame({
     onStarted: async () => {
       cli.print('Welcome to the Brain Games!');
@@ -13,15 +9,13 @@ export default function playBrainGame({ instruction, cli, round }) {
       cli.print(instruction);
       return name;
     },
-    onSucceed: (name) => cli.print(`Congratulations, ${name}!`),
-    onRoundChange: () => {
-      if (rounds !== DEFAULT_ATTEMPTS_AMOUNT) {
-        rounds += 1;
-        return round;
-      }
-      return null;
+    onSucceed: (name) => {
+      cli.print(`Congratulations, ${name}!`);
     },
-    onRoundPassed: () => cli.print('Correct!'),
+    onRoundChange,
+    onRoundPassed: () => {
+      cli.print('Correct!');
+    },
     onRoundFailed: (name, { answer, key }) => {
       cli.print(`'${answer}' is wrong answer ;(. Correct answer was '${key}'.`);
       cli.print(`Let's try again, ${name}!`);
