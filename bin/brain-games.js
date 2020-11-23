@@ -1,8 +1,5 @@
 #! /usr/bin/env node
-import { print, read } from '../src/cli.js';
+import cli from '../src/cli.js';
+import playBrainGcdGame from '../src/games/brain-games.js';
 
-(async () => {
-  print('Welcome to the Brain Games!');
-  const name = await read('May I have your name?');
-  print(`Hello, ${name}!`);
-})();
+playBrainGcdGame(cli);

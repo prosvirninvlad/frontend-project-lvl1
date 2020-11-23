@@ -1,20 +1,44 @@
-const MAX_ROUNDS = 3;
+import { read } from '../cli.js';
+import { isNumber } from '../common.js';
+import playGame from '../engine.js';
 
-export default async function playGame(hooks) {
-  let rounds = 0;
-  const data = await hooks.onStarted();
-  const play = () => hooks.onRoundChange(data);
+function isValidAnswer(answer, key) {
+  return key === (isNumber(key) ? parseInt(answer, 10) : answer);
+}
 
-  for (; rounds < MAX_ROUNDS; rounds += 1) {
-    const round = await play();
-    if (!round.passed) {
-      hooks.onRoundFailed(data, round);
-      break;
-    }
-    hooks.onRoundPassed(data, round);
+export default function playBrainGame({ instruction, cli, generateGameRound }) {
+  async function handleOnStarted() {
+    cli.print('Welcome to the Brain Games!');
+    const name = await cli.read('May I have your name?');
+    cli.print(`Hello, ${name}`);
+    cli.print(instruction);
+    return name;
   }
 
-  if (rounds === MAX_ROUNDS) {
-    hooks.onSucceed(data);
+  function handleOnSucceed(name) {
+    cli.print(`Congratulations, ${name}!`);
   }
+
+  async function handleOnRoundChange() {
+    const { question, key } = generateGameRound();
+    const answer = await read(`Question: ${question}\nYour answer:`);
+    return { answer, key, passed: isValidAnswer(answer, key) };
+  }
+
+  function handleOnRoundPassed() {
+    cli.print('Correct!');
+  }
+
+  function handleOnRoundFailed(name, { answer, key }) {
+    cli.print(`'${answer}' is wrong answer ;(. Correct answer was '${key}'.`);
+    cli.print(`Let's try again, ${name}!`);
+  }
+
+  playGame({
+    onStarted: handleOnStarted,
+    onSucceed: handleOnSucceed,
+    onRoundChange: handleOnRoundChange,
+    onRoundPassed: handleOnRoundPassed,
+    onRoundFailed: handleOnRoundFailed,
+  });
 }
