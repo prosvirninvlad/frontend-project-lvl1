@@ -5,21 +5,24 @@ const MAX_RANDOM_VALUE = 100;
 const ADD_OP_SIGN = '+';
 const SUB_OP_SIGN = '-';
 const MUL_OP_SIGN = '*';
-const OPERATORS = [ADD_OP_SIGN, SUB_OP_SIGN, MUL_OP_SIGN];
-const OPERATORS_MAP = {
-  [ADD_OP_SIGN]: (numberA, numberB) => numberA + numberB,
-  [SUB_OP_SIGN]: (numberA, numberB) => numberA - numberB,
-  [MUL_OP_SIGN]: (numberA, numberB) => numberA * numberB,
-};
+const OPERATIONS = [
+  { operator: ADD_OP_SIGN, evaluate: (numberA, numberB) => numberA + numberB },
+  { operator: SUB_OP_SIGN, evaluate: (numberA, numberB) => numberA - numberB },
+  { operator: MUL_OP_SIGN, evaluate: (numberA, numberB) => numberA * numberB },
+];
 const GAME_INSTRUCTION = 'What is the result of the expression?';
+
+function getRandomOperation() {
+  return OPERATIONS[random(0, OPERATIONS.length)];
+}
 
 function generateGameRound() {
   const numberA = random(MAX_RANDOM_VALUE);
   const numberB = random(MAX_RANDOM_VALUE);
-  const operator = OPERATORS[random(0, OPERATORS.length)];
+  const { operator, evaluate } = getRandomOperation();
   return {
     question: `${numberA} ${operator} ${numberB}`,
-    key: OPERATORS_MAP[operator](numberA, numberB),
+    key: evaluate(numberA, numberB),
   };
 }
 
