@@ -1,5 +1,5 @@
 import { random } from '../common.js';
-import playBrainGame from './index.js';
+import playBrainGame from '../engine.js';
 
 const MAX_RANDOM_VALUE = 100;
 const MIN_PROGRESSION_LENGTH = 5;

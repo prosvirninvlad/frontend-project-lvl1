@@ -1,5 +1,5 @@
 import { isPrime, random } from '../common.js';
-import playBrainGame from './index.js';
+import playBrainGame from '../engine.js';
 
 const MAX_RANDOM_VALUE = 100;
 const GAME_INSTRUCTION = 'Answer "yes" if the number is prime, otherwise answer "no".';
