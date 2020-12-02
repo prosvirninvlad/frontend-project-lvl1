@@ -6,9 +6,9 @@ const ADD_OP_SIGN = '+';
 const SUB_OP_SIGN = '-';
 const MUL_OP_SIGN = '*';
 const OPERATIONS = [
-  { operator: ADD_OP_SIGN, evaluate: (numberA, numberB) => numberA + numberB },
-  { operator: SUB_OP_SIGN, evaluate: (numberA, numberB) => numberA - numberB },
-  { operator: MUL_OP_SIGN, evaluate: (numberA, numberB) => numberA * numberB },
+  { operator: ADD_OP_SIGN, evaluate: (a, b) => a + b },
+  { operator: SUB_OP_SIGN, evaluate: (a, b) => a - b },
+  { operator: MUL_OP_SIGN, evaluate: (a, b) => a * b },
 ];
 const GAME_INSTRUCTION = 'What is the result of the expression?';
 
