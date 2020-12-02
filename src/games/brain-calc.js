@@ -2,13 +2,13 @@ import { random } from '../common.js';
 import playBrainGame from '../engine.js';
 
 const MAX_RANDOM_VALUE = 100;
-const ADD_OP_SIGN = '+';
-const SUB_OP_SIGN = '-';
-const MUL_OP_SIGN = '*';
+const ADD_OPERATOR_SIGN = '+';
+const SUB_OPERATOR_SIGN = '-';
+const MUL_OPERATOR_SIGN = '*';
 const OPERATIONS = [
-  { operator: ADD_OP_SIGN, evaluate: (a, b) => a + b },
-  { operator: SUB_OP_SIGN, evaluate: (a, b) => a - b },
-  { operator: MUL_OP_SIGN, evaluate: (a, b) => a * b },
+  { operator: ADD_OPERATOR_SIGN, evaluate: (a, b) => a + b },
+  { operator: SUB_OPERATOR_SIGN, evaluate: (a, b) => a - b },
+  { operator: MUL_OPERATOR_SIGN, evaluate: (a, b) => a * b },
 ];
 const GAME_INSTRUCTION = 'What is the result of the expression?';
 
