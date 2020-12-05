@@ -13,6 +13,6 @@ function generateGameRound() {
   return { question: number, key: isEven(number) ? 'yes' : 'no' };
 }
 
-export default function playBrainEvenGame(cli) {
-  playBrainGame({ cli, instruction: GAME_INSTRUCTION, generateGameRound });
+export default function playBrainEvenGame() {
+  playBrainGame({ instruction: GAME_INSTRUCTION, generateGameRound });
 }

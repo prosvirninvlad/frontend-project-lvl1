@@ -26,6 +26,6 @@ function generateGameRound() {
   };
 }
 
-export default function playBrainCalcGame(cli) {
-  playBrainGame({ cli, instruction: GAME_INSTRUCTION, generateGameRound });
+export default function playBrainCalcGame() {
+  playBrainGame({ instruction: GAME_INSTRUCTION, generateGameRound });
 }

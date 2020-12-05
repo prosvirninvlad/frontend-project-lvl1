@@ -28,6 +28,6 @@ function generateGameRound() {
   return { question: number, key: isPrime(number) ? 'yes' : 'no' };
 }
 
-export default function playBrainPrimeGame(cli) {
-  playBrainGame({ cli, instruction: GAME_INSTRUCTION, generateGameRound });
+export default function playBrainPrimeGame() {
+  playBrainGame({ instruction: GAME_INSTRUCTION, generateGameRound });
 }

@@ -32,6 +32,6 @@ function generateGameRound() {
   return { question: stringifyProgressionWithSecretItem(progression, index), key: item };
 }
 
-export default function playBrainProgressionGame(cli) {
-  playBrainGame({ cli, instruction: GAME_INSTRUCTION, generateGameRound });
+export default function playBrainProgressionGame() {
+  playBrainGame({ instruction: GAME_INSTRUCTION, generateGameRound });
 }

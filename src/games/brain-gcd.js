@@ -14,6 +14,6 @@ function generateGameRound() {
   return { question: `${numberA} ${numberB}`, key: gcd(numberA, numberB) };
 }
 
-export default function playBrainGcdGame(cli) {
-  playBrainGame({ cli, instruction: GAME_INSTRUCTION, generateGameRound });
+export default function playBrainGcdGame() {
+  playBrainGame({ instruction: GAME_INSTRUCTION, generateGameRound });
 }
