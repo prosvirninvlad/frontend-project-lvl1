@@ -1,9 +1,7 @@
-import { isNumber } from './common.js';
-
 const MAX_ROUNDS = 3;
 
 function isValidAnswer(answer, key) {
-  return key === (isNumber(key) ? parseInt(answer, 10) : answer);
+  return key === (typeof key === 'number' ? parseInt(answer, 10) : answer);
 }
 
 export default async function playBrainGame({ instruction, cli, generateGameRound }) {

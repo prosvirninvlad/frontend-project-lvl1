@@ -1,8 +1,12 @@
-import { gcd, random } from '../common.js';
+import { random } from '../common.js';
 import playBrainGame from '../engine.js';
 
 const MAX_RANDOM_VALUE = 100;
 const GAME_INSTRUCTION = 'Find the greatest common divisor of given numbers.';
+
+function gcd(numberA, numberB) {
+  return numberB ? gcd(numberB, numberA % numberB) : numberA;
+}
 
 function generateGameRound() {
   const numberA = random(MAX_RANDOM_VALUE);
