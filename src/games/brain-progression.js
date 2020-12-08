@@ -22,14 +22,14 @@ function getRandomProgressionItem(progression) {
   return { item: progression[index], index };
 }
 
-function stringifyProgressionWithSecretItem(progression, secretIndex) {
+function getQuestion(progression, secretIndex) {
   return progression.map((item, index) => (index === secretIndex ? '..' : item)).join(' ');
 }
 
 function generateGameRound() {
   const progression = generateRandomProgression();
   const { item, index } = getRandomProgressionItem(progression);
-  return { question: stringifyProgressionWithSecretItem(progression, index), key: item };
+  return { question: getQuestion(progression, index), key: item };
 }
 
 export default function playBrainProgressionGame() {
